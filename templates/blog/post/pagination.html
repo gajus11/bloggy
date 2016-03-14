@@ -1,0 +1,17 @@
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/pagination.css' %}">
+
+<ul class="pagination">
+    {% if page.has_previous %}
+        <li><a href="?page={{ page.previous_page_number }}">{{ page.previous_page_number }}</a></li>
+    {% endif %}
+        <li class="active"><a href="#">{{ page.number }}</a></li>
+    {% if page.has_next %}
+        <li><a href="?page={{ page.next_page_number }}">{{ page.next_page_number }}</a></li>
+    {% endif %}
+</ul>

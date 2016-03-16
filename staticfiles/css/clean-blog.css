@@ -215,15 +215,18 @@ hr.small {
 .post-preview > a {
   color: #404040;
 }
+
 .post-preview > a:hover,
-.post-preview > a:focus {
+.post-preview > a:focus,
+{
   text-decoration: none;
-  color: #0085a1;
+  color: #ff0000;
 }
 .post-preview > a > .post-title {
   font-size: 30px;
   margin-top: 30px;
   margin-bottom: 10px;
+  font-color: red;
 }
 .post-preview > a > .post-subtitle {
   margin: 0;
@@ -231,9 +234,10 @@ hr.small {
   margin-bottom: 10px;
 }
 .post-preview > a > .post-read {
-  margin: 0;
-  font-weight: 300;
-  margin-bottom: 10px;
+  color: #808080;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
   text-align: right;
 }
 .post-preview > .post-meta {

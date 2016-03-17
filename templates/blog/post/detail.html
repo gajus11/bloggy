@@ -1,32 +1,70 @@
 {% extends "blog/base.html" %}
 
 {% block content %}
-    <header class="intro-header">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <!--Naglowek-->
+    <header class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-preview">
                     <div class="post-heading">
                         <h1>{{ post.title }}</h1>
-                        <span class="meta"> Opublikowany {{ post.publish }} przez {{post.author }}</span>
                     </div>
+                    <p class="post-meta">
+                        Opublikowany {{ post.publish }} przez {{post.author }}
+                    </p>
                 </div>
             </div>
         </div>
     </header>
 
+    <!--Tresc posta-->
     <article>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     {{ post.body|linebreaks }}
-
                     <br>
                     <a href="{% url 'blog:post_share' post.id %}">
-                        Share this post
+                        <p class="post-read">
+                            Podziel się ze znajomymi!
+                        </p>
                     </a>
                 </div>
             </div>
         </div>
     </article>
+
+    {% with comments.count as total_comments %}
+        <h2>
+            Łącznia ilość komentarzy: {{ total_comments }}
+        </h2>
+    {% endwith %}
+
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">
+                Komentarz {{ forloop.counter }} dodany przez {{ comment.name }}, dnia
+                {{ comment.created }}
+            </p>
+            {{ comment.body|linebreaks }}
+        </div>
+    {% empty %}
+        <p>
+            Nie ma komentarzy
+        </p>
+    {% endfor %}
+
+    {% if new_comment %}
+        <h2>
+            Dodano komentarz!
+        </h2>
+    {% else %}
+        <h2>Dodaj komentarz</h2>
+        <form action="." method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Dodaj"></p>
+        </form>
+    {% endif %}
 
 {% endblock %}

@@ -236,6 +236,14 @@ hr.small {
   margin-bottom: 10px;
   text-align: right;
 }
+
+a > .post-read {
+  margin: 0;
+  font-weight: 300;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
 .post-preview > .post-meta {
   color: #808080;
   font-size: 18px;
